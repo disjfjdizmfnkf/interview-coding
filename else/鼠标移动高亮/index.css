@@ -1,0 +1,43 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #26282D;
+}
+
+.container {
+    display: grid;
+    padding: 0 20px;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+
+}
+
+.box {
+    position: relative;
+    background: #3b3b3b;
+    border-radius: inherit;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* 使用的是before但是还是父元素的一部分, 在所有子元素之前 */
+.box::before {
+    content: '';  /* 没有content就不会被渲染了 */
+    position: absolute;
+    inset: 0;  /* 之后定位元素会自动计算宽度和高度 */
+    transform: translate(var(--x-offset, 1000000px), var(--y-offset, 1000000px));
+    background: radial-gradient(closest-side circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+}
+
+.inner {
+    position: absolute;
+    inset: 4px;
+    background: #26282D;
+    border-radius: inherit;
+}
+
+

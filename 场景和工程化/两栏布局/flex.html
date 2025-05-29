@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .outer {
+    display: flex;
+    height: 100px;
+  }
+
+  .left {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 200px;
+    background: tomato;
+  }
+
+  .right {
+    flex: auto;
+    /*11 auto*/
+    background: gold;
+  }
+</style>
+<body>
+  <div class="outer">
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </div>
+</body>
+</html>

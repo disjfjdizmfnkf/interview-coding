@@ -1,0 +1,18 @@
+{
+  "tagName": "div",
+  "attributes": {
+    "class": "container",
+    "id": "main-container"
+  },
+  "children": [
+    {
+      "tagName": "h1",
+      "attributes": {
+        "class": "header",
+        "id": "main-header"
+      },
+      "textContent": "Welcome to My Website"
+    }
+  ]
+}
+

@@ -1,0 +1,7 @@
+
+{
+    "scripts": {
+      "build": "webpack --env production",
+      "dev": "webpack serve --env development"
+    }
+}
