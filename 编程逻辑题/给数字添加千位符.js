@@ -11,6 +11,7 @@
 function numberThousands(number, thousandsSeperator = ",") {
   return String(number).replace(/(\d)(?=(\d{3})+$)/g, '$1' + thousandsSeperator);
   //! 错误示例, /(\d)(?=(\d{3}+)$)/g {3}和+都是量词,要分开 
+  //! (?=(\d{3})+$) $ 在前一个括号内部, 一定要确认到最后的结尾
 }
 
 console.log(numberThousands(1234567890));

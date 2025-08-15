@@ -1,52 +1,58 @@
-class HardMan {
+// 工厂函数
+function hardMan(name) {
+  return new hardManClass(name);
+}
+
+class hardManClass {
   constructor(name) {
+    this.task = [];
     this.name = name;
-    this.queue = [];
-    // 初始任务
-    this.queue.push(() => {
+
+    this.task.push(() => {
       console.log(`Hi! I am ${this.name}.`);
       this.next();
     });
-    setTimeout(() => this.next(), 0);
+
+    //! 代码同步加入所有任务, 使用setTimeOut确保开始时所有任务都在队列中
+    setTimeout(() => {
+      this.next();
+    }, 0);
   }
 
   next() {
-    const task = this.queue.shift();
-    task?.();
+    if (this.task.length) {
+      const task = this.task.shift();
+      task();
+    }
   }
 
   study(subject) {
-    this.queue.push(() => {
+    this.task.push(() => {
       console.log(`I'm studying ${subject}`);
       this.next();
     });
+    return this; //! 每个方法返回this确保可以链式调用
+  }
+
+  rest(time) {
+    this._addRest(time, false);
     return this;
   }
 
-  rest(seconds) {
-    this._addRest(seconds, false);
+  restFirst(time) {
+    this._addRest(time, true);
     return this;
   }
 
-  restFirst(seconds) {
-    this._addRest(seconds, true);
-    return this;
-  }
-
-  _addRest(seconds, isFirst) {
-    const task = () => {
+  _addRest(time, isFirst) {
+    const t = () => {
       setTimeout(() => {
-        console.log(`Wait ${seconds} seconds.`);
+        console.log(`Wait ${time} seconds.`);
         this.next();
-      }, seconds * 1000);
+      }, time * 1000);
     };
-    isFirst ? this.queue.unshift(task) : this.queue.push(task);
+    isFirst ? this.task.unshift(t) : this.task.push(t);
   }
-}
-
-// 工厂函数
-function hardMan(name) {
-  return new HardMan(name);
 }
 
 // 写一个hardMan函数，满足控制台打印效果如下：

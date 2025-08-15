@@ -6,7 +6,7 @@
 function debounce(f, delay, immediate = false) {
   let timer;
   let isImmediate = false;
-  // 这里不能是箭头函数
+  // 返回的函数不能是一个箭头函数
   return function (...args) {
     if (!isImmediate && immediate) {
       f.apply(this, args);
@@ -15,7 +15,7 @@ function debounce(f, delay, immediate = false) {
     }
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-      // 外层使用箭头函数，实现将这里的this绑定到返回函数的this上
+      // f调用时的this和debounce返回的函数调用时的this是同一个
       f.apply(this, args);
     }, delay);
   };

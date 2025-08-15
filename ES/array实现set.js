@@ -2,7 +2,7 @@
 // includes()
 // 
 
-class fakeSet {
+class FakeArray {
   constructor() {
     this.items = [];
     this.size = 0;

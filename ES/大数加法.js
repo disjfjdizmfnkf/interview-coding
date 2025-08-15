@@ -42,5 +42,3 @@ function sum3(a, b) {
 console.log("sum1: ", sum1(a, b));
 console.log("sum2: ", sum2(a, b));
 console.log("sum3: ", sum3(a, b));
-
-

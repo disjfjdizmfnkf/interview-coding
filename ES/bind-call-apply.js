@@ -58,6 +58,7 @@ Function.prototype.myBind = function (ctx, ...args) {
   // 返回新函数
   return function (...restArgs) {
     // 如果使用new调用，忽略this绑定
+    // 使用new调用函数时, 函数内部new.target返回被调用的构造函数
     if (new.target) {
       // ...展开运算符得到的一些列单个的元素
       return new func(...args, ...restArgs);

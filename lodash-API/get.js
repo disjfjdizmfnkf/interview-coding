@@ -7,6 +7,19 @@
  * + 量词
  */
 
+//* 更简单的正则
+function get(object, path, defalutValue) {
+  if (!Array.isArray(path)) {
+    path = String(path).replace(/[\[\]]+/g, "").split(".");
+  }
+  let cur = object;
+  for (const key of path) {
+    if (!(key in Object(cur))) return defalutValue; // 使用in的时候确保是对象，使用Object方法包装基本数据类型
+    cur = cur[key];
+  }
+  return cur;
+}
+
 // path: Array | String
 function get(object, path, defalutValue) {
   if (!Array.isArray(path)) {
@@ -41,7 +54,7 @@ const testObject = {
   f: "hello",
 };
 
-console.log(get(testObject, "a.e.[2]", "defalut"));  //WARN: [2]应该被作为数组的索引2, 第一种方法直接当作字符串处理
+console.log(get(testObject, "a.e.[2]", "defalut")); //WARN: [2]应该被作为数组的索引2, 第一种方法直接当作字符串处理
 console.log(get(testObject, ["a", "e", "2"], "defalut"));
 console.log(get(testObject, ["a", "b", "c"], "defalut"));
 console.log(get(testObject, ["a", "b", "c", "d"], "defalut"));

@@ -1,5 +1,6 @@
 //*                   无对象的数组                */
 //* 使用set  时间复杂度O(n)
+// 无法去重地址不同的数据相同的引用数据类型
 function uniqueArray(array) {
   return [...new Set(array)];
 }
@@ -19,6 +20,7 @@ function uniqueArray(array) {
 
 //* indexOf(item)第一个出现的位置  时间复杂度O(n^2)
 function uniqueArray(array) {
+  // indexOf 会从前往后找到第一个item并且返回索引
   return array.filter((item, index) => array.indexOf(item) === index);
 }
 
@@ -40,7 +42,7 @@ for (let i = 0; i < arry_.length; i++) {
     // 修正1：j = i + 1
     if (deepEqual(arry_[i], arry_[j])) {
       arry_.splice(j, 1);
-      j--; // 调整索引
+      j--; //! 调整索引
     }
   }
 }

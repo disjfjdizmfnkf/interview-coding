@@ -9,8 +9,9 @@ const flatArray = [
 //* 数组转树
 function flatArrayToTree(array) {
   const id2node = new Map();
-  const res = []; 
+  const res = []; // 存放所有根节点
   for (const item of array) {
+    //* 树的节点有children属性
     id2node.set(item.id, { ...item, children: [] });
   }
   for (const item of array) {

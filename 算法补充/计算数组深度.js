@@ -1,3 +1,10 @@
+const getArrayDepth = (array) => {
+  return array.reduce(
+    (pre, cur) => Math.max(pre, Array.isArray(cur) ? getDepth(cur) + 1 : 0),
+    1
+  );
+};
+
 function getArrayDepth(array) {
   let maxDepth = 0;
   for (const item of array) {

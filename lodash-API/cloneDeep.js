@@ -1,7 +1,7 @@
 // 可以处理循环引用
 function deepClone(value) {
   // 使用weakmap防止垃圾回收器无法回收这些引用
-  const cache = new WeakMap();
+  const cache = new WeakMap();  //* 键是对象, 且不需要枚举键值对 -> 使用weakMap 
   function _deepClone(value) {
     // 如果是非对象的值直接返回
     if (value == null || typeof value !== "object") {
@@ -24,7 +24,7 @@ function deepClone(value) {
   return _deepClone(value);
 }
 
-// 奇技淫巧使用Json方法, 无法解决函数一些函数对象
+// 奇技淫巧使用Json方法, 无法解决函数和循环引用
 function deepClone_(value) {
   return JSON.parse(JSON.stringify(value));
 }

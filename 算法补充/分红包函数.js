@@ -3,6 +3,7 @@ function distributeRedPackets(totalAmount, numPackets, minAmount, maxAmount) {
   const currentCombination = []; // 当前分配方案
 
   // 借助currentMin维护结果中的红包递增, 保证元素不重复  
+  //! currentMin 维护从每次分配开始的最小金额, 确保不会出现重复方案
   function backtrack(remainingAmount, currentMin, remainingPackets) {
     // 如果金额分配完成且没有剩余红包
     if (remainingAmount === 0) {
