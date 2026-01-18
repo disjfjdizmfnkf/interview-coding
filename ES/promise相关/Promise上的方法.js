@@ -99,3 +99,22 @@ Promise.fakePromiseAllsettled = function (proms) {
 
   return p;
 };
+
+function fakePromsieAll(proms) {
+  return new Promise((resolve, reject) => {
+    const res = [];
+    let count = 0;
+
+    for (const prom of proms) {
+      const index = count;
+      count++;
+      Promise.resolve(proms).then(data => {
+        res[index] = data;
+        count--;
+      }).catch(reject);
+    }
+
+    if (count === 0) resolve([]);
+  })
+}
+
